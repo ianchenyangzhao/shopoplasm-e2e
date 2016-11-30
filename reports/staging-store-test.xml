@@ -5,15 +5,15 @@
 
   <testsuite name="staging-store-test"
     errors="1" failures="0" hostname="" id="" package="staging-store-test" skipped="0"
-    tests="1" time="0.01200" timestamp="Wed, 30 Nov 2016 21:58:02 GMT">
+    tests="1" time="0.01100" timestamp="Wed, 30 Nov 2016 23:25:41 GMT">
   
-    <testcase name="Test staging store purchase::regular" time="0.01200" assertions="0">
+    <testcase name="Test staging store purchase::regular" time="0.01100" assertions="0">
     </testcase>
       <system-err>
           Error while running [Staging Store Test / Test staging store purchase::regular]:
 
-  TypeError: checkoutPage.navigate(...).waitForElementVisible(...).assert.title(...).assert.visible(...).pause is not a function
-    at Object.Test staging store purchase::regular (/Users/ichzhao/projects/shopoplasm-e2e/tests/staging-store-test.js:10:14)
+  TypeError: checkoutPage.fakeCookie(...).navigate is not a function
+    at Object.Test staging store purchase::regular (/Users/ichzhao/projects/shopoplasm-e2e/tests/staging-store-test.js:8:14)
     at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
     at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
     at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
             failures="0"
-            tests="1">
+            tests="2">
 
   <testsuite name="staging-store-test"
     errors="0" failures="0" hostname="" id="" package="staging-store-test" skipped="0"
-    tests="1" time="9.387" timestamp="Wed, 30 Nov 2016 22:32:23 GMT">
+    tests="2" time="27.36" timestamp="Wed, 30 Nov 2016 23:33:37 GMT">
   
-    <testcase name="Test staging store purchase::regular" time="9.387" assertions="0">
+    <testcase name="Test staging store purchase address form" time="26.79" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Test staging store purchase checkout payment page" time="0.5690" assertions="0">
     </testcase>
   
   

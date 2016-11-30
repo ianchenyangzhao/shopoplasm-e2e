@@ -19,7 +19,7 @@
 
     "test_settings": {
         "default": {
-            "launch_url": "https://www.fragrantjewels.com/a/shop/checkout/",
+            "launch_url": "http://test-fragrant-jewels-store.myshopify.com",
             "selenium_port": 4444,
             "selenium_host": "localhost",
             "silent": true,
