@@ -1,0 +1,16 @@
+{
+  "name": "shopoplasm-e2e",
+  "version": "0.0.1",
+  "description": "E2e test suite for fragrantjewels.com production and staging env",
+  "main": "index.js",
+  "scripts": {
+    "test": "run test"
+  },
+  "author": "chzhao",
+  "license": "MIT",
+  "dependencies": {
+    "nightmare": "^2.8.1",
+    "nightwatch": "^0.9.9",
+    "selenium-webdriver": "^3.0.1"
+  }
+}

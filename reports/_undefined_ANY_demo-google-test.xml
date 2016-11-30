@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="demo-google-test"
+    errors="0" failures="1" hostname="" id="" package="demo-google-test" skipped="0"
+    tests="1" time="3.167" timestamp="Wed, 30 Nov 2016 19:28:38 GMT">
+  
+    <testcase name="Demo test Google" time="3.167" assertions="1">  <failure message="Timed out while waiting for element &lt;body&gt; to be present for 1000 milliseconds.">    at Object.Demo test Google (/Users/ichzhao/projects/shopoplasm-e2e/tests/demo-google-test.js:5:14)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>
