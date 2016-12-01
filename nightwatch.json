@@ -8,7 +8,7 @@
     "waitForConditionTimeout": "3000",
 
     "selenium": {
-        "start_process": false,
+        "start_process": true,
         "server_path": "./bin/selenium-server-standalone-3.0.1.jar",
         "log_path": "./log/test.log",
         "port": 4444,
