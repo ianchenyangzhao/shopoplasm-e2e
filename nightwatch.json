@@ -5,6 +5,7 @@
     "custom_assertions_path": "",
     "page_objects_path": "./tests/pages",
     "globals_path": "",
+    "waitForConditionTimeout": "3000",
 
     "selenium": {
         "start_process": false,
@@ -19,6 +20,9 @@
 
     "test_settings": {
         "default": {
+            "globals": {
+                "waitForConditionTimeout": 5000
+            },
             "launch_url": "http://test-fragrant-jewels-store.myshopify.com",
             "selenium_port": 4444,
             "selenium_host": "localhost",

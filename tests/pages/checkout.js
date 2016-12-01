@@ -78,15 +78,6 @@ module.exports = {
         },
         phoneInput: {
             selector: 'input[name="phone"]'
-        },
-        brainTreeSubmit: {
-            selector: ''
-        },
-        creditCardNumber: {
-            selector: ''
-        },
-        creditCardDate: {
-            selector: ''
         }
     }
 };
