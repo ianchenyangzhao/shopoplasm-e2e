@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # check package manager Homebrew
-if [ $(which brew) = "" ]
+if [ "$(which brew)" = "" ]
 then
     echo "Homebrew not found, need to install Homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -11,7 +11,7 @@ else
 fi
 
 # check for nodejs and npm
-if [ $(which node) = "" ]
+if [ "$(which node)" = "" ]
 then
     echo "Nodejs not found, installing"
     brew install node
@@ -20,7 +20,7 @@ else
 fi
 
 # check if nodejs install and have npm
-if [ $(which node) = "" ] 
+if [ "$(which node)" = "" ] 
 then
     echo "NPM not found, installing"
     brew install npm
