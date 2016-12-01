@@ -1,13 +1,12 @@
 #!/bin/bash
 
 # check package manager Homebrew
-homebrew_path=$(which brew)
-if [ homebrew_path = "" ]
+if [ $(which brew)= "" ]
 then
     echo "Homebrew not found, need to install Homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
-    echo "Found Homebrew at" $homebrew_path
+    echo "Found Homebrew at" $(which brew)
     echo "Skip installing Homebrew"
 fi
 
