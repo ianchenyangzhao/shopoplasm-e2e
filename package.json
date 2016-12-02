@@ -4,7 +4,8 @@
   "description": "E2e test suite for fragrantjewels.com production and staging env",
   "main": "index.js",
   "scripts": {
-    "test": "run test"
+    "test": "run test",
+    "e2e": "nightwatch --env=$BROWSER -t $TARGET"
   },
   "author": "chzhao",
   "license": "MIT",
