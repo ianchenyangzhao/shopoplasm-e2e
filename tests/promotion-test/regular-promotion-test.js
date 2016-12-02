@@ -1,5 +1,7 @@
 /*==============================================================================*/
 const purchaseSetup = function(client) {
+    //    remove all cookies visible to current page
+    client.deleteCookies();
     client
         .resizeWindow(2406, 1528)
         .perform(function() {
@@ -18,7 +20,6 @@ const purchaseSetup = function(client) {
         .waitForElementPresent("#addToCart")
         .click("#addToCart")
         .waitForElementPresent("form#the-cart-form input#agree")
-
 
     return client
 }
@@ -116,57 +117,61 @@ module.exports = {
         clientWithCart.end();
     },
     "Gitf with purchase: gwp-test: Lemon Drop - Citrus Verbena Jewel Candle": function(client) {
-        // set promo with cookie
-        client
-            .url("https://test-fragrant-jewels-store.myshopify.com")
-            .setCookie({
-                name: "test_cookie",
-                value: "test_value",
-                path: "/",
-                domain: "https://test-fragrant-jewels-store.myshopify.com",
-            })
-            .url("https://test-fragrant-jewels-store.myshopify.com")
-            .getCookie('test_cookie', function callback(result) {
-                console.log(result);
-                
-                this.assert.equals(result.name, 'test_cookie');
-                this.assert.equal(result.value, 'test_value');
-            })
-            .pause(5000);
         var gwpCode = 'gwp-test';
 
         clientWithCart = purchaseSetup(client);
+        // set promo with cookie
         clientWithCart
+            .perform(function() {
+                console.log('pause, wait async javascript to load');
+                console.log('prepare to set Cookie');
+            })
+            .pause(2000)
+            .setCookie({
+                name: "promo",
+                value: gwpCode,
+                path: "/",
+                domain: "test-fragrant-jewels-store.myshopify.com",
+            }, function(result) {
+                // make sure cookie can be set 
+                this.assert.equal(result.state, 'success');
+            })
+            .pause(2000)
+            .getCookie('promo', function(result) {
+                this.assert.equal(result.name, 'promo');
+                this.assert.equal(result.value, gwpCode);
+            })
+            .pause(5000)
             .keys(['\uE00C'])
             .pause(10000)
             .perform(function() {
                 console.log('prepare to take screen shots of current cart, expect gwp show up')
             })
-            //     .saveScreenshot('./reports/gwpCart.png')
-            //     .click("form#the-cart-form input#agree")
-            //     .click("#checkout")
-            //     .waitForElementPresent("input[name='email']")
-            //     .setValue("input[name='email']", "fjtest@fake.com")
-            //     .waitForElementPresent("input[name='first_name']")
-            //     .setValue("input[name='first_name']", "fakejohn")
-            //     .waitForElementPresent("input[name='last_name']")
-            //     .setValue("input[name='last_name']", "doe")
-            //     .waitForElementPresent("input[name='address1']")
-            //     .setValue("input[name='address1']", "e w4 st")
-            //     .waitForElementPresent("input[name='city']")
-            //     .setValue("input[name='city']", "los angeles")
-            //     .setValue("select[name='state']", "CA")
-            //     .waitForElementPresent("form input[name='zipcode']")
-            //     .click("form input[name='zipcode']")
-            //     .waitForElementPresent("input[name='zipcode']")
-            //     .setValue("input[name='zipcode']", "90058")
-            //     .waitForElementPresent("form input[name='phone']")
-            //     .click("form input[name='phone']")
-            //     .waitForElementPresent("input[name='phone']")
-            //     .setValue("input[name='phone']", "8882227782")
-            //     .pause(5000)
-            //     .saveScreenshot('./reports/gwpInCart.png')
+            .saveScreenshot('./reports/gwpCart.png')
+            .click("form#the-cart-form input#agree")
+            .click("#checkout")
+            .waitForElementPresent("input[name='email']")
+            .setValue("input[name='email']", "fjtest@fake.com")
+            .waitForElementPresent("input[name='first_name']")
+            .setValue("input[name='first_name']", "fakejohn")
+            .waitForElementPresent("input[name='last_name']")
+            .setValue("input[name='last_name']", "doe")
+            .waitForElementPresent("input[name='address1']")
+            .setValue("input[name='address1']", "e w4 st")
+            .waitForElementPresent("input[name='city']")
+            .setValue("input[name='city']", "los angeles")
+            .setValue("select[name='state']", "CA")
+            .waitForElementPresent("form input[name='zipcode']")
+            .click("form input[name='zipcode']")
+            .waitForElementPresent("input[name='zipcode']")
+            .setValue("input[name='zipcode']", "90058")
+            .waitForElementPresent("form input[name='phone']")
+            .click("form input[name='phone']")
+            .waitForElementPresent("input[name='phone']")
+            .setValue("input[name='phone']", "8882227782")
+            .pause(5000)
+            .saveScreenshot('./reports/gwpInCart.png')
 
-        // clientWithCart.end();
+        clientWithCart.end();
     }
 };
