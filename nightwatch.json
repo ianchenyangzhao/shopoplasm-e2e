@@ -10,7 +10,7 @@
     "selenium": {
         "start_process": true,
         "server_path": "./bin/selenium-server-standalone-3.0.1.jar",
-        "log_path": "./log/test.log",
+        "log_path": "./log/test",
         "port": 4444,
         "cli_args": {
             "webdriver.chrome.driver": "./bin/chromedriver",
@@ -21,6 +21,7 @@
     "test_settings": {
         "default": {
             "globals": {
+                "abortOnAssertionFailure": false,
                 "waitForConditionTimeout": 5000
             },
             "launch_url": "http://test-fragrant-jewels-store.myshopify.com",
