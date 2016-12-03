@@ -1,25 +1,40 @@
 /*==============================================================================*/
-const purchaseSetup = function(client) {
+const purchaseSetup = function(client, url, counts) {
     //    remove all cookies visible to current page
     client.deleteCookies();
-    client
-        .resizeWindow(2406, 1528)
-        .perform(function() {
-            console.log("Going to autumn spices page, add to cart");
-        })
-        .url("https://test-fragrant-jewels-store.myshopify.com/products/autumn-spice-jewel-candle")
-        .pause(3000)
-        .waitForElementPresent("#addToCart")
-        .click("#addToCart")
-        .waitForElementPresent("form#the-cart-form input#agree")
-        .perform(function() {
-            console.log("Going to autumn spices page, add to cart");
-        })
-        .url("https://test-fragrant-jewels-store.myshopify.com/products/autumn-spice-jewel-candle")
-        .pause(3000)
-        .waitForElementPresent("#addToCart")
-        .click("#addToCart")
-        .waitForElementPresent("form#the-cart-form input#agree")
+    client.resizeWindow(2406, 1528);
+    // {TODO} catch type exceptions here
+    if (url && counts) {
+        for (var i = 0; i < counts; i++) {
+            client
+                .perform(function() {
+                    console.log("Going to autumn spices page, add to cart");
+                })
+                .url(url)
+                .pause(2000)
+                .waitForElementPresent("#addToCart")
+                .click("#addToCart")
+                .waitForElementPresent("form#the-cart-form input#agree")
+        }
+    } else {
+        client
+            .perform(function() {
+                console.log("Going to autumn spices page, add to cart");
+            })
+            .url("https://test-fragrant-jewels-store.myshopify.com/products/autumn-spice-jewel-candle")
+            .pause(2000)
+            .waitForElementPresent("#addToCart")
+            .click("#addToCart")
+            .waitForElementPresent("form#the-cart-form input#agree")
+            .perform(function() {
+                console.log("Going to autumn spices page, add to cart");
+            })
+            .url("https://test-fragrant-jewels-store.myshopify.com/products/autumn-spice-jewel-candle")
+            .pause(2000)
+            .waitForElementPresent("#addToCart")
+            .click("#addToCart")
+            .waitForElementPresent("form#the-cart-form input#agree")
+    }
 
     return client
 }
@@ -62,19 +77,18 @@ const gotoCheckout = function(client) {
 }
 
 const addDiscountToCart = function(client, code) {
-    client = purchaseSetup(client);
     code = code ? code : 'fjcollect';
     client = gotoCheckout(client);
     client
         .waitForElementPresent("a.code-link.animate-link")
         .click("a.code-link.animate-link")
-        .pause(5000)
+        .pause(3000)
         .waitForElementPresent("input[name='input-discount']")
         .click("input[name='input-discount']")
         .setValue("input[name='input-discount']", code)
         .click('.discount-list .btn-block')
-        .pause(5000)
-        
+        .pause(3000)
+
     return client
 }
 

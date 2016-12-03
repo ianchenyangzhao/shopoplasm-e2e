@@ -2,11 +2,11 @@ var testUtils = require('../../utils');
 
 module.exports = {
     "Discount Code Test: fjcollect1: 5 dollar off": function(client) {
-        clientWithCart = testUtils.purchaseSetup(client);
+        client = testUtils.purchaseSetup(client);
         var discountCode = 'fjcollect1';
 
-        clientWithCart = testUtils.gotoCheckout(clientWithCart);
-        clientWithCart
+        client = testUtils.gotoCheckout(client);
+        client
             .waitForElementPresent("a.code-link.animate-link")
             .click("a.code-link.animate-link")
             .pause(5000)
@@ -17,14 +17,14 @@ module.exports = {
             .pause(5000)
             .saveScreenshot('./reports/dollar_amount.png')
 
-        clientWithCart.end();
+        client.end();
     },
     "Discount Code Test: fjcollect: 20% off": function(client) {
-        clientWithCart = testUtils.purchaseSetup(client);
+        client = testUtils.purchaseSetup(client);
         var discountCode = 'fjcollect';
 
-        clientWithCart = testUtils.gotoCheckout(clientWithCart);
-        clientWithCart
+        client = testUtils.gotoCheckout(client);
+        client
             .waitForElementPresent("a.code-link.animate-link")
             .click("a.code-link.animate-link")
             .pause(5000)
@@ -35,14 +35,14 @@ module.exports = {
             .pause(5000)
             .saveScreenshot('./reports/percent_discount.png')
 
-        clientWithCart.end();
+        client.end();
     },
     "Discount Code Test: freeups: Freeshipping": function(client) {
-        clientWithCart = testUtils.purchaseSetup(client);
+        client = testUtils.purchaseSetup(client);
         var discountCode = 'freeups';
 
-        clientWithCart = testUtils.gotoCheckout(clientWithCart);
-        clientWithCart
+        client = testUtils.gotoCheckout(client);
+        client
             .waitForElementPresent("a.code-link.animate-link")
             .click("a.code-link.animate-link")
             .pause(5000)
@@ -53,14 +53,14 @@ module.exports = {
             .pause(5000)
             .saveScreenshot('./reports/fresshipping.png')
 
-        clientWithCart.end();
+        client.end();
     },
     "Gitf with purchase: gwp-test: Lemon Drop - Citrus Verbena Jewel Candle": function(client) {
         var gwpCode = 'gwp-test';
 
-        clientWithCart = testUtils.purchaseSetup(client);
+        client = testUtils.purchaseSetup(client);
         // set promo with cookie
-        clientWithCart
+        client
             .perform(function() {
                 console.log('pause, wait async javascript to load');
                 console.log('prepare to set Cookie');
@@ -109,13 +109,14 @@ module.exports = {
             .pause(5000)
             .saveScreenshot('./reports/gwpInCart.png')
 
-        clientWithCart.end();
+        client.end();
     },
     "Gift with purchase Replace Discount: gwp-test/fjcollect": function(client) {
         var gwpCode = 'gwp-test';
-        clientWithDiscount = testUtils.addDiscountToCart(client, 'fjcollect')
+        client = testUtils.purchaseSetup(client);
+        client = testUtils.addDiscountToCart(client, 'fjcollect')
 
-        clientWithDiscount
+        client
             .perform(function() {
                 console.log('pause, wait async javascript to load');
                 console.log('prepare to set Cookie');
@@ -164,5 +165,29 @@ module.exports = {
             .setValue("input[name='phone']", "8882227782")
             .pause(5000)
             .saveScreenshot('./reports/gwpInCart.png')
+    },
+    "Buy X Get Y free: Normal": function(client){
+        client = testUtils.purchaseSetup(client, "https://test-fragrant-jewels-store.myshopify.com/products/autumn-spice-jewel-candle", 3);
+        // go to checkout page
+        client = testUtils.gotoCheckout(client);
+        client = testUtils.addDiscountToCart(client, 'buygetfree');
+        client.saveScreenshot('./reports/buygetfree_normal.png')
+    },
+    "Buy X Get Y free: Remove One": function(client){
+        client = testUtils.purchaseSetup(client, "https://test-fragrant-jewels-store.myshopify.com/products/autumn-spice-jewel-candle", 3)
+        // go to checkout page
+        client = testUtils.gotoCheckout(client);
+        client = testUtils.addDiscountToCart(client, 'buygetfree');
+
+        client
+            .url('https://test-fragrant-jewels-store.myshopify.com/cart')
+            .waitForElementPresent("button[onclick='removeFromCart(24101102979)']")
+            .click("button[onclick='removeFromCart(24101102979)']")
+            .waitForElementPresent("form#the-cart-form input#agree")
+
+        client = testUtils.gotoCheckout(client);
+        client = testUtils.addDiscountToCart(client, 'buygetfree');
+
+        client.saveScreenshot('./reports/buygetfree_removeone.png')
     }
 };
