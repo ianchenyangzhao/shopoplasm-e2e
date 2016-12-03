@@ -189,7 +189,9 @@ module.exports = {
         client = testUtils.gotoCheckout(client);
         client = testUtils.addDiscountToCart(client, 'buygetfree');
         client
-            .pause(5000)
+            .getAlertText(function(result){
+                this.assert.equal(result.value, "Discount can not be applied to order");
+            })
             .saveScreenshot('./reports/buygetfree_removeone.png')
     }
 };
