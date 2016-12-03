@@ -179,6 +179,7 @@ module.exports = {
         client = testUtils.gotoCheckout(client);
         client = testUtils.addDiscountToCart(client, 'buygetfree');
 
+        // {TODO} need a better way to remove from cart, don't use specific product id
         client
             .url('https://test-fragrant-jewels-store.myshopify.com/cart')
             .waitForElementPresent("button[onclick='removeFromCart(24101102979)']")
@@ -187,7 +188,8 @@ module.exports = {
 
         client = testUtils.gotoCheckout(client);
         client = testUtils.addDiscountToCart(client, 'buygetfree');
-
-        client.saveScreenshot('./reports/buygetfree_removeone.png')
+        client
+            .pause(5000)
+            .saveScreenshot('./reports/buygetfree_removeone.png')
     }
 };
